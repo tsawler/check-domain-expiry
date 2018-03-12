@@ -17,7 +17,7 @@ env GOOS=linux GOARCH=amd64 go build -o check_domain_expiration main.go
 Run the command from cli as follows:
 
 ~~~
-check_domain_expiration -host <domainname.com>
+check_domain_expiration -host example.com
 ~~~
 
 ## Integration with Nagios 4
@@ -36,10 +36,11 @@ In individual files in `/usr/local/nagios/etc/servers`:
 
 ~~~
 define service{
-        use                     generic-service
-        host_name               www.somesite.com
-        service_description     Check Domain Expiration
-        check_command           check_domain_expiration!domain.com
+        host_name               www.example.com
+        service_description     Check Domain Expiry
+        check_command           check_domain_expiration!example.com
+        max_check_attempts      5
+        check_interval          1440
 }
 
 ~~~
