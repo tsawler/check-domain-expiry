@@ -48,4 +48,4 @@ define service{
 
 
 ## License
-This sofware is licensed under the MIT License. 
+This sofware is licensed under the [MIT License](https://github.com/tsawler/check-domain-expiry/blob/master/LICENSE.md). 
