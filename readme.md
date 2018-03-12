@@ -17,7 +17,7 @@ env GOOS=linux GOARCH=amd64 go build -o check_domain_expiration main.go
 Run the command from cli as follows:
 
 ~~~
-check_domain_expiration -host example.com
+check_domain_expiration -domain example.com
 ~~~
 
 ## Integration with Nagios 4
