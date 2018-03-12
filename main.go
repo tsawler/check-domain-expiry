@@ -78,6 +78,8 @@ func main() {
 			}
 
 		}
+	} else {
+		nagios.Critical(err)
 	}
 
 }
