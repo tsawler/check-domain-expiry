@@ -37,7 +37,7 @@ func main() {
 
 			timeParser := ""
 
-			// These are the only 2 formats we've seen so far. There are probably more.
+			// These are the only formats we've seen so far. There are probably more.
 			// We'll get a critical error if so, and will add the format.
 			if len(v) > 23 {
 				timeParser = timeFormatWithOffset
