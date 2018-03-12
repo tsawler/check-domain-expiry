@@ -11,12 +11,14 @@ import (
 	"strconv"
 	"checkhttp2/messages"
 	"errors"
+	//"os"
+	"strings"
 )
 
 const (
-	timeFormat = "2006-01-02T15:04:00Z"
+	timeFormat      = "2006-01-02T15:04:05Z"
+	timeFormatShort = "2006/01/02"
 )
-
 
 func main() {
 
@@ -31,14 +33,23 @@ func main() {
 
 		if err == nil {
 			v := result.Registrar.ExpirationDate
-			then, err := time.Parse(timeFormat, v)
+
+			timeParser := ""
+
+			if strings.Contains(v, "/") {
+				timeParser = timeFormatShort
+			} else {
+				timeParser = timeFormat
+			}
+
+			then, err := time.Parse(timeParser, v)
+
 			if err != nil {
 				fmt.Println(err)
 				return
 			}
 			duration := time.Until(then)
 			days := int(duration.Hours() / 24)
-
 
 			if days < 0 {
 				msg := *domainPtr + " has expired!"
