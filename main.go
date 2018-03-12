@@ -1,3 +1,4 @@
+// nagios plugin to check for domain expiration
 package main
 
 import (
@@ -11,7 +12,6 @@ import (
 	"strconv"
 	"checkhttp2/messages"
 	"errors"
-	//"os"
 	"strings"
 )
 
@@ -20,6 +20,7 @@ const (
 	timeFormatShort = "2006/01/02"
 )
 
+// main Performs check of dmain by querying whois, and sends notifications to nagios
 func main() {
 
 	domainPtr := flag.String("domain", "", "A valid domain name e.g. example.com")
@@ -36,6 +37,8 @@ func main() {
 
 			timeParser := ""
 
+			// These are the only 2 formats we've seen so far. There are probably more.
+			// We'll get a critical error if so, and will add the format.
 			if strings.Contains(v, "/") {
 				timeParser = timeFormatShort
 			} else {
@@ -46,8 +49,9 @@ func main() {
 
 			if err != nil {
 				fmt.Println(err)
-				return
+				nagios.Critical(err)
 			}
+
 			duration := time.Until(then)
 			days := int(duration.Hours() / 24)
 
