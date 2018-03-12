@@ -2,17 +2,16 @@
 package main
 
 import (
+	"errors"
 	"flag"
 	"fmt"
+	"strconv"
+	"strings"
 	"time"
 
 	"github.com/likexian/whois-go"
 	"github.com/likexian/whois-parser-go"
 	"github.com/newrelic/go_nagios"
-	"strconv"
-	"checkhttp2/messages"
-	"errors"
-	"strings"
 )
 
 const (
@@ -72,7 +71,7 @@ func main() {
 			} else {
 				// things are okay
 				msg := *domainPtr + " expiring in " + strconv.Itoa(days) + " days"
-				messages.Ok(msg)
+				nagios.Ok(msg)
 			}
 
 		}
