@@ -5,14 +5,14 @@ A simple nagios module, written in go, to test for domain expiration.
 This plugin is meant to be used with [Nagios](https://www.nagios.org/).
 
 
-# Build
+## Build
 Compile for Linux (e.g. Digital Ocean Ubuntu 16.04): 
 
 ~~~
 env GOOS=linux GOARCH=amd64 go build -o check_domain_expiration main.go
 ~~~
 
-# Usage
+## Usage
 
 Run the command from cli as follows:
 
