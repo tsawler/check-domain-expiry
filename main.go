@@ -56,17 +56,21 @@ func main() {
 			days := int(duration.Hours() / 24)
 
 			if days < 0 {
+				// domain has expired
 				msg := *domainPtr + " has expired!"
 				err := errors.New(msg)
 				nagios.Critical(err)
 			} else if days < 7 {
+				// a week or less until expiry
 				msg := *domainPtr + " expiring in " + strconv.Itoa(days) + " days"
 				err := errors.New(msg)
 				nagios.Critical(err)
 			} else if days < 30 {
+				// 30 days or less until expiry
 				msg := *domainPtr + " expiring in " + strconv.Itoa(days) + " days"
 				nagios.Warning(msg)
 			} else {
+				// things are okay
 				msg := *domainPtr + " expiring in " + strconv.Itoa(days) + " days"
 				messages.Ok(msg)
 			}
