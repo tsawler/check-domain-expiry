@@ -27,7 +27,7 @@ Add this to `/usr/local/nagios/objects/commands.cfg`:
 ~~~
 define command {
    command_name    check_domain_expiration
-   command_line    /usr/local/nagios/libexec/check_domain_expiration -host $ARG1$
+   command_line    /usr/local/nagios/libexec/check_domain_expiration -domain $ARG1$
 }
 ~~~
 
