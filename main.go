@@ -6,18 +6,12 @@ import (
 	"flag"
 	"fmt"
 	"strconv"
-	"strings"
 	"time"
 
+	"github.com/araddon/dateparse"
 	"github.com/likexian/whois-go"
 	"github.com/likexian/whois-parser-go"
 	"github.com/newrelic/go_nagios"
-)
-
-const (
-	timeFormat           = "2006-01-02T15:04:05Z"
-	timeFormatShort      = "2006/01/02"
-	timeFormatWithOffset = "2006-01-02T15:04:05-0700"
 )
 
 // main Performs check of dmain by querying whois, and sends notifications to nagios
@@ -35,19 +29,7 @@ func main() {
 		if err == nil {
 			v := result.Registrar.ExpirationDate
 
-			timeParser := ""
-
-			// These are the only formats we've seen so far. There are probably more.
-			// We'll get a critical error if so, and will add the format.
-			if len(v) > 23 {
-				timeParser = timeFormatWithOffset
-			} else if strings.Contains(v, "/") {
-				timeParser = timeFormatShort
-			} else {
-				timeParser = timeFormat
-			}
-
-			then, err := time.Parse(timeParser, v)
+			then, err := dateparse.ParseAny(v)
 
 			if err != nil {
 				fmt.Println(err)
