@@ -1,6 +1,8 @@
 # check-domain-expiry
 
-A simple nagios module, written in go, to test for domain expiration.
+A simple nagios module, written in go, to test for domain expiration. This was written simply because I got tired
+of having customers forget to renew their domains. This gives me the chance to give them a warning before everything
+stops working.
 
 This plugin is meant to be used with [Nagios](https://www.nagios.org/).
 

@@ -14,7 +14,7 @@ import (
 	"github.com/newrelic/go_nagios"
 )
 
-// main Performs check of dmain by querying whois, and sends notifications to nagios
+// main Performs check of domain by querying whois, and sends notifications to nagios
 func main() {
 
 	domainPtr := flag.String("domain", "", "A valid domain name e.g. example.com")
