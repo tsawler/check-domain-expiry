@@ -24,7 +24,7 @@ func main() {
 
 	if err == nil {
 
-		result, err := whois_parser.Parser(whoisResult)
+		result, err := whois_parser.Parse(whoisResult)
 
 		if err == nil {
 			v := result.Registrar.ExpirationDate
