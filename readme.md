@@ -1,3 +1,5 @@
+[![Go Report Card](https://goreportcard.com/badge/github.com/tsawler/check-domain-expiry)](https://goreportcard.com/report/github.com/tsawler/check-domain-expiry)
+
 # check-domain-expiry
 
 A simple nagios module, written in go, to test for domain expiration. This was written simply because I got tired
