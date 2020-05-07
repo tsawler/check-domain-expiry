@@ -10,7 +10,7 @@ import (
 
 	"github.com/araddon/dateparse"
 	"github.com/likexian/whois-go"
-	"github.com/likexian/whois-parser-go"
+	wp "github.com/likexian/whois-parser-go"
 	"github.com/newrelic/go_nagios"
 )
 
@@ -20,14 +20,14 @@ func main() {
 	domainPtr := flag.String("domain", "", "A valid domain name e.g. example.com")
 	flag.Parse()
 
-	whoisResult, err := whois.Whois(*domainPtr)
+	whoisResult, err := whois.Whois(*domainPtr, "whois.iana.org")
 
 	if err == nil {
 
-		result, err := whoisparser.Parse(whoisResult)
+		result, err := wp.Parse(whoisResult)
 
 		if err == nil {
-			v := result.Registrar.ExpirationDate
+			v := result.Domain.ExpirationDate
 
 			then, err := dateparse.ParseAny(v)
 
@@ -61,6 +61,7 @@ func main() {
 
 		}
 	} else {
+		fmt.Println(err)
 		nagios.Critical(err)
 	}
 
